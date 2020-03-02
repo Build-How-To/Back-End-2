@@ -13,6 +13,13 @@ exports.seed = function(knex) {
       Email: "benzmixer@gmail.com",
       First_Name: "Benjamin",
       Last_Name: "Smalley"
+    },
+    {
+      username: "grtbwgevrdsdfrt",
+      password: "Woah!",
+      Email: "dfsv@gmail.com",
+      First_Name: "asdcds",
+      Last_Name: "yjnryu"
     }
   ]);
 };
