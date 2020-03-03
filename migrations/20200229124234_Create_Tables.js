@@ -26,6 +26,10 @@ exports.up = function(knex) {
       tbl.string("description").notNullable();
       tbl.string("category").notNullable();
       tbl.string("difficulty").notNullable();
+      tbl.integer("likes");
+      tbl.integer("tries");
+      tbl.integer("upVotes");
+      tbl.integer("downVotes");
       tbl
         .integer("Creators_User_Id")
         .references("User_Id")
@@ -47,6 +51,20 @@ exports.up = function(knex) {
         .inTable("Guides")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
+    })
+    .createTable("Reviews", tbl => {
+      tbl
+        .increments("review_Id")
+        .unique()
+        .primary();
+
+      tbl.string("review_body").notNullable();
+      tbl
+        .integer("Guide_Id")
+        .references("Guides_Id")
+        .inTable("Guides")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
     });
 };
 
@@ -54,5 +72,6 @@ exports.down = function(knex) {
   return knex.schema
     .dropTableIfExists("Users")
     .dropTableIfExists("Guides")
-    .dropTableIfExists("Steps");
+    .dropTableIfExists("Steps")
+    .dropTableIfExists("Reviews");
 };
