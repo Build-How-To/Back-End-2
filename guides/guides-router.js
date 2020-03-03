@@ -85,6 +85,22 @@ router.get("/:id/steps", restricted, validateId, (req, res) => {
     });
 });
 
+// Find reviews by Guide Id
+router.get("/:id/reviews", restricted, validateId, (req, res) => {
+  let id = req.params.id;
+
+  db.findReviewsByGuideId(id)
+    .then(review => {
+      res.status(200).json({ review });
+    })
+    .catch(err => {
+      res.status(500).json({
+        errorMessage: `An error occured when trying to find steps for the guide with an id of ${id}`,
+        err
+      });
+    });
+});
+
 // MIDDLEWARE:
 
 function validateBody(req, res, next) {

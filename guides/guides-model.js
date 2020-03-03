@@ -7,7 +7,8 @@ module.exports = {
   findById,
   update,
   remove,
-  findStepsByGuideId
+  findStepsByGuideId,
+  findReviewsByGuideId
 };
 
 function find() {
@@ -50,10 +51,15 @@ function remove(id) {
 }
 
 function findStepsByGuideId(id) {
-  console.log("LALALA:", id);
-
   return db("Guides as g")
-    .select("s.Step_Id", "g.title", "s.description", "s.Step_Id", "g.Guides_Id")
+    .select("s.Step_Id", "g.title", "s.description", "s.Step_Id")
     .join("Steps as s", "s.Guide_Id", "g.Guides_Id")
+    .where("g.Guides_Id", id);
+}
+
+function findReviewsByGuideId(id) {
+  return db("Guides as g")
+    .select("r.review_Id", "g.title as Guide_Title", "r.review_body")
+    .join("Reviews as r", "r.Guide_Id", "g.Guides_Id")
     .where("g.Guides_Id", id);
 }
