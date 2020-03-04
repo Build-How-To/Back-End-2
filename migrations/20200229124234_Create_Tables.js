@@ -65,6 +65,12 @@ exports.up = function(knex) {
         .inTable("Guides")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
+      tbl
+        .integer("User_Id")
+        .references("User_Id")
+        .inTable("Users")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
     });
 };
 
@@ -72,6 +78,6 @@ exports.down = function(knex) {
   return knex.schema
     .dropTableIfExists("Users")
     .dropTableIfExists("Guides")
-    .dropTableIfExists("Steps")
-    .dropTableIfExists("Reviews");
+    .dropTableIfExists("Reviews")
+    .dropTableIfExists("Steps");
 };
