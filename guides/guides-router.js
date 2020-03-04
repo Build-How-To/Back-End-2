@@ -142,7 +142,7 @@ function validateId(req, res, next) {
         next();
       } else {
         res.status(400).json({
-          errorMessage: `A user with an ID of ${id} does not exist!`
+          errorMessage: `A guide with an ID of ${id} does not exist!`
         });
       }
     })
