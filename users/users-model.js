@@ -19,7 +19,6 @@ function findBy(filter) {
 }
 
 function add(user) {
-  console.log("IN MODEL:", user);
   return db("Users").insert(user);
 }
 

@@ -32,7 +32,10 @@ module.exports = {
       }
     },
     migrations: {
-      directory: "./data/migrations"
+      directory: "./testMigrations"
+    },
+    seeds: {
+      directory: "./testSeeds"
     }
   },
 

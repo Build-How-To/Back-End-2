@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch --verbose",
+    "test": "cross-env DB_ENV=testing jest --watch --verbose --runInBand",
     "server": "nodemon index.js",
     "start": "node index.js"
+  },
+  "jest": {
+    "testEnviroment": "node"
   },
   "repository": {
     "type": "git",
