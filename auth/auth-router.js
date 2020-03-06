@@ -11,9 +11,9 @@ const secrets = require("../config/secret");
 // ENDPOINTS:
 router.post("/register", validateRegisterBody, (req, res) => {
   let user = req.body;
-  console.log("USER:", user);
   const hash = bcrypt.hashSync(user.password, 10);
   user.password = hash;
+  // console.log(user);
 
   db.add(user)
     .then(saved => {
@@ -27,7 +27,7 @@ router.post("/register", validateRegisterBody, (req, res) => {
 // User Login
 router.post("/login", validateLogInBody, (req, res) => {
   let { Email, password } = req.body;
-
+  console.log(Email, password);
   db.findBy({ Email })
     .first()
     .then(user => {
@@ -43,6 +43,7 @@ router.post("/login", validateLogInBody, (req, res) => {
       }
     })
     .catch(err => {
+      console.log("IN FAILURE:", Email, password);
       res.status(500).json({ Message: "Womp, you suck", err });
     });
 });

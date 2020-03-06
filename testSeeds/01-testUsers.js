@@ -25,10 +25,10 @@ exports.seed = function(knex) {
     }
   ];
 
-  seedUser.map(user => {
+  let newseedUsers = seedUser.map(user => {
     const hash = bcrypt.hashSync(user.password, 10);
     user.password = hash;
   });
 
-  return knex("Users").insert(seedUser);
+  return knex("Test_Users").insert(newseedUser);
 };

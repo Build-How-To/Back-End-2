@@ -8,6 +8,7 @@ const restricted = require("../auth/restricted-middleware");
 
 // Get ALL users
 router.get("/", restricted, (req, res) => {
+  console.log("In Endpoint");
   db.find()
     .then(users => {
       res.json({ users });

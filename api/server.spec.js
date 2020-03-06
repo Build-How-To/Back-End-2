@@ -1,14 +1,5 @@
-// const server = require("./server");
-// const request = require("supertest");
-
-// describe("GET /", () => {
-//   it('has process.env.DB_ENV as "testing"', () => {
-//     expect(process.env.DB_ENV).toBe("testing");
-//   });
-// });
-
-const request = require("supertest"); // calling it "request" is a common practice
-const server = require("./server.js"); // this is our first red, file doesn't exist yet
+const request = require("supertest");
+const server = require("./server.js");
 
 describe("server.js", () => {
   describe("index route", () => {
@@ -19,7 +10,7 @@ describe("server.js", () => {
     });
 
     it("should return a JSON object from the index route", async () => {
-      const expectedBody = { api: "running" };
+      const expectedBody = { api: "running", dbenv: "testing" };
       const response = await request(server).get("/");
       expect(response.body).toEqual(expectedBody);
     });
